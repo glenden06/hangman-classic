@@ -120,21 +120,20 @@ func PrintHangman(erreur int) {
 		fmt.Println(line)
 	}
 }
-
-func relancerhangman() {
-	resetSturm()
-	fmt.Println("recommencer le pendu [o/n]")
-	var relancer string
-	fmt.Scanln(&relancer)
-	if relancer == "o" {
+func retryHangman() {
+	resetTerminal()
+	fmt.Println("Voulez-vous recommencer le pendu [o/n] ?")
+	var retry string
+	fmt.Scanln(&retry)
+	if retry == "o" {
 		main()
 	}
-	if relancer == "n" {
-		resetSturm()
+	if retry == "n" {
+		resetTerminal()
 		return
 	}
-	if relancer != "n" && relancer != "0" {
-		resetSturm()
-		fmt.Println("[0] pour oui et [n] pour non, apparement ca te semble complique")
+	if retry != "n" && retry != "o" {
+		resetTerminal()
+		fmt.Println("[o] pour oui et [n] pour non, c'est pourtant pas complique.")
 	}
 }
