@@ -133,7 +133,7 @@ func retryHangman() {
 		return
 	}
 	if retry != "n" && retry != "o" {
-		resetTerminal()
+		resetSturm()
 		fmt.Println("[o] pour oui et [n] pour non, c'est pourtant pas complique.")
 	}
 }
