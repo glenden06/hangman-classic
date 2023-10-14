@@ -121,7 +121,7 @@ func PrintHangman(erreur int) {
 	}
 }
 func retryHangman() {
-	resetTerminal()
+	resetSturm()
 	fmt.Println("Voulez-vous recommencer le pendu [o/n] ?")
 	var retry string
 	fmt.Scanln(&retry)
@@ -129,7 +129,7 @@ func retryHangman() {
 		main()
 	}
 	if retry == "n" {
-		resetTerminal()
+		resetSturm()
 		return
 	}
 	if retry != "n" && retry != "o" {
