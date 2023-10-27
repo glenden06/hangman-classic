@@ -9,7 +9,7 @@ import (
 	"time"
 )
 
-func resetSturm() {
+func terminalreset() {
 	fmt.Print("\033c")
 }
 
@@ -43,9 +43,8 @@ func main() {
 	var lettressai []string
 
 	for nimput := 1; nimput <= 26; nimput++ {
-		resetSturm()
+		terminalreset()
 		PrintHangman(erreur)
-		fmt.Println(ligne)
 		fmt.Println("Vous avez deja essayé les lettres suivantes: ", lettressai)
 		fmt.Println("Vous avez encore le droit a ", 6-erreur, " erreur(s)")
 		fmt.Println("Veuillez entrer une lettre: ")
@@ -61,22 +60,26 @@ func main() {
 			}
 			//Si le mot est complet, afficher le message victoire et arreter le programme
 			if strings.Join(ligne, "") == hidenword {
-				resetSturm()
+				terminalreset()
 				fmt.Println(ligne)
 				fmt.Println(win)
+				time.Sleep(2 * time.Second)
+				hangman()
 				break
 			}
 		} else {
 			//Si la lettre n'est pas dans le mot, afficher l'erreur et augmenter erreur
-			resetSturm()
+			terminalreset()
 			fmt.Println("Erreur, cette lettre n'est pas dans le mot")
 			erreur++
 			time.Sleep(1 * time.Second)
 			//Si erreur est egal a 6, afficher le message defaite et arreter le programme
 			if erreur == 6 {
-				resetSturm()
+				terminalreset()
 				fmt.Println(lose)
-				fmt.Println("Le putain de mot etait ", hidenword)
+				fmt.Println("Le mot etait ", hidenword)
+				time.Sleep(2 * time.Second)
+				hangman()
 				break
 			}
 		}
@@ -120,8 +123,8 @@ func PrintHangman(erreur int) {
 		fmt.Println(line)
 	}
 }
-func retryHangman() {
-	resetSturm()
+func hangman() {
+	terminalreset()
 	fmt.Println("Voulez-vous recommencer le pendu [o/n] ?")
 	var retry string
 	fmt.Scanln(&retry)
@@ -129,11 +132,11 @@ func retryHangman() {
 		main()
 	}
 	if retry == "n" {
-		resetSturm()
+		terminalreset()
 		return
 	}
 	if retry != "n" && retry != "o" {
-		resetSturm()
+		terminalreset()
 		fmt.Println("[o] pour oui et [n] pour non, c'est pourtant pas complique.")
 	}
 }
