@@ -69,7 +69,7 @@ func main() {
 
     win := "Bravo, vous avez gagné !"
     //Creer une variable avec le message de victoire
-
+	
     lose := "Dommage, vous avez perdu !"
     //Crrer une variable avec le message de defaite
 
@@ -125,5 +125,60 @@ func main() {
 		
 						break
 						//On utilise break pour arreter le programme pour eviter qu'il continu
+					}
+					funcPrintHangman(erreur int) {
+						//le tabeau vide du pendu
+						hangman := []string{
+							"  +---+",
+							"  |   |",
+							"      |",
+							"      |",
+							"      |",
+							"      |",
+							"=========",
+						}
+						//on corrige les lignes du tableau dans le cas ou errcount est equivalent à 1,2,3,4,5,6
+						switch erreur {
+						case 1:
+							hangman[2] = "  O   |"
+						case 2:
+							hangman[2] = "  O   |"
+							hangman[3] = "  |   |"
+						case 3:
+							hangman[2] = "  O   |"
+							hangman[3] = " /|   |"
+						case 4:
+							hangman[2] = "  O   |"
+							hangman[3] = " /|\\  |"
+						case 5:
+							hangman[2] = "  O   |"
+							hangman[3] = " /|\\  |"
+							hangman[4] = " /    |"
+						case 6:
+							hangman[2] = "  O   |"
+							hangman[3] = " /|\\  |"
+							hangman[4] = " / \\  |"
+						}
+						//On affiche le tableau
+						for _, line := range hangman {
+							fmt.Println(line)
+						}
+					}
+					func hangman() {
+						terminalreset()
+						fmt.Println("Voulez-vous recommencer le pendu [o/n] ?")
+						var retry string
+						fmt.Scanln(&retry)
+						if retry == "o" { //si oui
+							main()
+						}
+						if retry == "n" { //si non
+							terminalreset() //fin du programme et reset du terminal
+							return
+						}
+						if retry != "n" && retry != "o" { //Si le choix n'est pas valide
+							terminalreset()
+							fmt.Println("[o] pour oui et [n] pour non, c'est pourtant pas complique.")
+						}
 					}
 					
